@@ -146,7 +146,6 @@ def convert_lines_into_mm(lines, out_fp):
     indent(topnode)
     tree = et.ElementTree(topnode)
     tree.write(out_fp, 'utf-8')
-    out_fp.write('\n')
 
 if __name__ == '__main__':
     global filename
@@ -165,4 +164,4 @@ if __name__ == '__main__':
     # Decode UTF-8
     lines = [line.decode('utf-8') for line in lines]
 
-    convert_lines_into_mm(lines, sys.stdout)
+    convert_lines_into_mm(lines, '%s.mm' % filename)
