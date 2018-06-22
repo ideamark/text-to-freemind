@@ -5,9 +5,9 @@ A simple text to freemind conversion program
 This program converts tab-indented UTF-8 text files into an XML format suitable for display by Freemind. It was written out of annoyance with the Freemind user interface, and the lack of 'merging' capabilities when collaborating with other
 people.
 
-Author: Mark Young <ideamark@qq.com>
+Author: Mark Young (ideamark@qq.com)
 
-The origin author is Wouter Bolsterlee <uws@xs4all.nl>. Thanks for sharing.
+The origin author is Wouter Bolsterlee (uws@xs4all.nl). Thanks for sharing.
 
 It is a new version of text-to-freemind by some modification.
 
