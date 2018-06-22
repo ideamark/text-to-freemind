@@ -9,7 +9,7 @@ Author: Mark Young (ideamark@qq.com)
 
 The origin author is Wouter Bolsterlee (uws@xs4all.nl). Thanks for sharing.
 
-It is a new version of text-to-freemind by some modification.
+It is a new version of text-to-freemind by upgrading Python2.5 to Python3.x
 
 This program is distributed under the GPL v2 (or later) license.
 
@@ -22,13 +22,6 @@ To convert a single text file into a Freemind file, use:
 You can use it as a filter (using shell pipes) as well:
 
     $ cat some-text-data.txt | text-to-freemind
-
-
-## Requirements
-
-The conversion program is written in Python (tested with 2.4 and 2.5) and
-requires an ElementTree implementation. Install python-elementtree or
-python-celementtree (included in Python 2.5) if you run into programs.
 
 
 ## Issues, problems, and feedback

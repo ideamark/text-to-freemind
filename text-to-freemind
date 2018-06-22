@@ -1,38 +1,20 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # A simple text to freemind conversion program
 #
-# See README for copyright and licensing information.
-#
-
-import sys, time, encodings, re
+import re
+import sys
+import time
+import xml.etree.ElementTree as et
 
 
 def bailout(msg, line=None):
     global filename
-    if filename == '-':
-        filename = '<stdin>'
     if line is not None:
         sys.stderr.write('%s:%d: %s\n' % (filename, line, msg))
     else:
         sys.stderr.write('%s: %s\n' % (filename, msg))
     sys.exit(1)
-
-
-# Try to load a suitable celementtree incarnation. This is supposed to work for
-# both Python 2.4 (both python and C version) and Python 2.5
-try:
-    import xml.etree.ElementTree as et # python 2.5
-except ImportError:
-    try:
-        import cElementTree as et # python 2.4 celementtree
-    except ImportError:
-        import elementtree.ElementTree as et # python 2.4 elementtree
-
-try:
-    et
-except NameError:
-    bailout('No suitable ElementTree package found. Install python-elementtree (default in python 2.5).')
 
 
 creation_time = str(int(time.time() * 1000))
@@ -135,7 +117,7 @@ def convert_lines_into_mm(lines, out_fp):
         else:
             # One ore more levels up the tree. Pop items from the current path
             # and add a new node.
-            for i in xrange(curlevel - level + 1):
+            for i in range(curlevel - level + 1):
                 curpath.pop(-1)
             n = et.SubElement(curpath[-1], 'node')
             curpath.append(n)
@@ -149,19 +131,8 @@ def convert_lines_into_mm(lines, out_fp):
 
 if __name__ == '__main__':
     global filename
-    try:
-        filename = sys.argv[1]
-        if filename == '-':
-            # stdin
-            lines = [line for line in sys.stdin.readlines()]
-        else:
-            # user-specified filename
-            lines = [line for line in file(filename)]
-    except IndexError:
-        # stdin
-        lines = [line for line in sys.stdin.readlines()]
+    filename = sys.argv[1]
 
-    # Decode UTF-8
-    lines = [line.decode('utf-8') for line in lines]
-
-    convert_lines_into_mm(lines, '%s.mm' % filename)
+    with open(filename, 'r') as fp:
+        lines = [line for line in fp.readlines()]
+        convert_lines_into_mm(lines, '%s.mm' % filename)
